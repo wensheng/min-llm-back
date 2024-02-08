@@ -36,7 +36,7 @@ async def home():
     return {"message": "Hello World"}
 
 
-@app.post('/v1/chat/completion',
+@app.post('/v1/chat/completions',
           response_model=Union[OAIChatCompletionResponse, OAIErrorResponse])
 async def chat_completion(request: Request, body: OAIChatCompletionRequest):
     """

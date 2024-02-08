@@ -1,0 +1,4 @@
+# see: https://github.com/lm-sys/FastChat/blob/main/docs/openai_api.md
+controller: python -m fastchat.serve.controller
+worker: python -m fastchat.serve.model_worker --model-path lmsys/vicuna-7b-v1.5
+resapi: python -m fastchat.serve.openai_api_server --host 0.0.0.0 --port 8080
