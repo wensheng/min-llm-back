@@ -5,8 +5,24 @@ Minimal OpenAI compatible API Server
 ## Existing OpenAI Compatible API servers
 
 The easiest way to run a OpenAI compatible server is to use
+[Ollama](https://ollama.com/),
 [FastChat](https://github.com/lm-sys/FastChat) or 
 [Llama.cpp-python](https://github.com/abetlen/llama-cpp-python)
+
+## Ollama
+
+Install [Ollama](https://ollama.com/).
+
+From one terminal:
+
+    OLLAMA_HOST=0.0.0.0:5000 ollama serve 
+
+From another terminal:
+
+    OLLAMA_HOST=0.0.0.0:5000 ollama run openchat
+
+Replace openchat with any model you want to use, see [available models](https://ollama.com/library).
+
 
 ### FastChat
 
@@ -18,7 +34,9 @@ Run:
 
     honcho -f Procfile.fschat start
 
-The API server runs on port 8080
+The API server runs on port 5000
+
+Create a new Profile and replace `model_path` if you want to use a different model.
 
 ### llama-cpp-python
 
@@ -38,9 +56,9 @@ Find models on huggingface, and download (or get with curl or wget) them into fo
 
 Run:
 
-    python -m llama_cpp.server --host 0.0.0.0 --port 18080 --model models/deepseek-coder-6.7b/deepseek-coder-6.7b-instruct.Q5_K_M.gguf
+    python -m llama_cpp.server --host 0.0.0.0 --port 5000 --model models/deepseek-coder-6.7b/deepseek-coder-6.7b-instruct.Q5_K_M.gguf
 
-The API server runs on port 18080
+The API server runs on port 5000
 
 
 ## min-llm-back Usage
@@ -53,7 +71,11 @@ After `pip install -r requirements.txt`:
 
 From another terminal:
 
-    curl http://localhost:5000/v1/chat/completion -H "Content-Type: application/json"  -d @sample.json
+    curl http://localhost:5000/v1/chat/completions -H "Content-Type: application/json"  -d @sample.json
+
+Test streaming:
+
+    curl http://localhost:5000/v1/chat/completions -H "Content-Type: application/json"  -d @sample_streaming.json
 
 
 

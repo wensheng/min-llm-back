@@ -9,5 +9,6 @@
       "role": "user",
       "content": "Give me a short introduction to Large Language Model."
     }
-  ]
+  ],
+  "stream": true
 }
